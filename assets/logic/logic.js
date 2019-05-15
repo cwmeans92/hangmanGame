@@ -11,9 +11,16 @@ let wrongAnswer= [];
 
 let underScore= [];
 
+let wins= 0
+
+let losses= 0
+
+let livesRemaining= 0
+
 // Pushing user input to the HTML with Dom Manipulation//
 
-let underActual= document.getElementsByClassName('underscore');
+letlivesRemaining= document.getElementsByClassName('livesRemaining').innerHTML = livesRemaining;
+let underActual= document.getElementsById('underscore');
 let rightAnswerActual= document.getElementsByClassName('rightAnswer');
 let wrongAnswerActual= document.getElementsByClassName('wrongAnswer');
 
@@ -21,7 +28,7 @@ let wrongAnswerActual= document.getElementsByClassName('wrongAnswer');
 
 let underscoreGen= () => {
     for (let i = 0; i<chosenWord.length; i++) {
-        underScore.push('_');
+        underScore.push(' _ ');
         // pushing to fill with user input//
         underActual[0].innerHTML = underScore.join(' ')
     }
@@ -48,16 +55,20 @@ document.addEventListener('keypress', (event) => {
         rightAnswerActual[0].innerHTML = rightAnswer.join(' ');
         underScore[chosenWord.indexOf(keyWord)]=keyWord;
     
-        // display win message if correct word is guessed 
+        // display win message if correct word is guessed//
+
     
         if(underScore.join('') == chosenWord) {
             alert('You Win!!!');
+            wins++; 
         }
     }
     // if incorrect push to wrong guess box//
     else{
         wrongAnswer.push(keyWord);
         wrongAnswerActual[0].innerHTML = wrongAnswer.join(' ');
+        livesRemaining --;
+        document.getElementsByClassName('livesRemaining').innerHTML= livesRemaining;
     }
     }
 ); 
